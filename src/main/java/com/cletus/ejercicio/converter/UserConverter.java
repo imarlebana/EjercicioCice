@@ -20,10 +20,10 @@ public class UserConverter {
     }
 
     public User toEntity(User u, UserCreateDto userCreateDto){
-        if (u == null){return null;}
+        if (u == null){ return null; }
 
         if(userCreateDto.getName()!=null){ u.setName(userCreateDto.getName());}
-        if(userCreateDto.getSurname()!=null){ u.setSurname(userCreateDto.getSurname());}
+        if(userCreateDto.getSurname()!=null){ u.setSurname(userCreateDto.getSurname()); }
 
         return u;
     }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ResponseServiceImpl implements IResponseService {
+
     @Override
     public <T> Response data(T data) {
        return response(200,"OK", data);

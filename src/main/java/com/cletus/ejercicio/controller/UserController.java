@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController()
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired private IResponseService responseService;
@@ -28,25 +28,33 @@ public class UserController {
         return responseService.response(200);
     }
 
-    @GetMapping()
-    public Response get(@RequestParam(name = "id", required = false) Long id){
-        if(id==null){
-            UserListDto users  = userService.getAll();
-            return responseService.data(users);
-        }
+    @GetMapping("/{id}")
+    public Response get(@PathVariable("id") Long id){
         UserDto userDto = userService.get(id);
         return responseService.data(userDto);
     }
 
-    @PatchMapping()
-    public Response update(@RequestParam("id") Long id, @RequestBody UserCreateDto userCreateDto){
+    @GetMapping()
+    public Response getAll(){
+        UserListDto userListDto = userService.getAll();
+        return responseService.data(userListDto);
+    }
+
+    @PatchMapping("/{id}")
+    public Response update(@PathVariable("id") Long id, @RequestBody UserCreateDto userCreateDto){
         userService.update(id,userCreateDto);
         return responseService.response(200);
     }
 
-    @DeleteMapping()
-    public Response delete(@RequestParam(name = "id", required = false) Long id){
+    @DeleteMapping("/{id}")
+    public Response delete(@PathVariable("id") Long id){
         userService.delete(id);
+        return responseService.response(200);
+    }
+
+    @DeleteMapping()
+    public Response deleteAll(){
+        userService.delete();
         return responseService.response(200);
     }
 

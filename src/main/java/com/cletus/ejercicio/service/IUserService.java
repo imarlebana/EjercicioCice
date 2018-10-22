@@ -15,4 +15,6 @@ public interface IUserService {
     void update(Long id,UserCreateDto userCreateDto);
 
     void delete(Long id);
+
+    void delete();
 }

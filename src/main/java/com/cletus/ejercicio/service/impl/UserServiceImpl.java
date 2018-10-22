@@ -27,6 +27,9 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public UserListDto getAll() {
+
+        //USE LAMBDA TO CONVERTER
+
         List<User> users = userRepository.findAll();
         List<UserDto> usersDto = userConverter.toDto(users);
         UserListDto userListDto = new UserListDto();
@@ -69,6 +72,11 @@ public class UserServiceImpl implements IUserService {
             User u = opt.get();
             userRepository.delete(u);
         }
+    }
+
+    @Override
+    public void delete() {
+        userRepository.deleteAll();
     }
 
 }
